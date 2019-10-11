@@ -3,6 +3,10 @@ source 'https://rubygems.org'
 gem 'rails',        '5.1.6'
 #パスワードをハッシュ化するためのハッシュ関数
 gem 'bcrypt',         '3.1.12'
+# ページネーション
+gem 'will_paginate',           '3.1.6'
+gem 'bootstrap-will_paginate', '1.0.0'
+
 gem 'puma',         '3.9.1'
 gem 'sass-rails',   '5.0.6'
 gem 'uglifier',     '3.2.0'

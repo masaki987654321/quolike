@@ -1,1 +1,5 @@
 <%= @user.name %>, <%= @user.email %>
+<% if @user.id == current_user.id %>
+  <p><%= link_to "ユーザー情報の編集", edit_user_path(current_user) %></p>
+  <p><%= link_to "アカウントの削除", user_path(current_user), method: :delete, data: { confirm: "本当に削除しますか？" } %></p>
+<% end %>
