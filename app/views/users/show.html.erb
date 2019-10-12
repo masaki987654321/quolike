@@ -1,4 +1,17 @@
 <%= @user.name %>, <%= @user.email %>
+
+<div class="row">
+  <div class="col-md-8">
+    <% if @user.questions.any? %>
+      <h3>質問数 (<%= @user.questions.count %>)</h3>
+      <ol>
+        <%= render @questions %>
+      </ol>
+      <%= will_paginate @questions %>
+    <% end %>
+  </div>
+</div>
+
 <% if @user.id == current_user.id %>
   <p><%= link_to "ユーザー情報の編集", edit_user_path(current_user) %></p>
   <p><%= link_to "アカウントの削除", user_path(current_user), method: :delete, data: { confirm: "本当に削除しますか？" } %></p>

@@ -13,3 +13,9 @@ User.create!(name:  "Example User",
                password: password,
                password_confirmation: password)
 end
+               
+users = User.order(:created_at).take(6)
+50.times do |n|
+  content = "sentence-#{n+1}"
+  users.each { |user| user.questions.create!(content: content) }
+end

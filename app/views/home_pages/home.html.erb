@@ -1,2 +1,10 @@
-<h1>HomePages#home</h1>
-<p>Find me in app/views/home_pages/home.html.erb</p>
+<div class="row">
+  <div class="col-md-8">
+    <% if Question.any? %>
+      <ol>
+        <%= render @questions %>
+      </ol>
+      <%= will_paginate @questions %>
+    <% end %>
+  </div>
+</div>

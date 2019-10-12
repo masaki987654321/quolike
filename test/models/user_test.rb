@@ -63,7 +63,14 @@ class UserTest < ActiveSupport::TestCase
     @user.password = @user.password_confirmation = " " * 6
     assert_not @user.valid?
   end
-
+  
+  test "userの削除とquestionの削除が連動しているか" do
+    @user.save
+    @user.questions.create!(content: "Lorem ipsum")
+    assert_difference 'Question.count', -1 do
+      @user.destroy
+    end
+  end
 
 end
 
