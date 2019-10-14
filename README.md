@@ -1,24 +1,38 @@
 # README
+質問を投稿・投稿された質問に回答をするアプリケーションです。
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+機能一覧
 
-Things you may want to cover:
+* 質問一覧表示機能
 
-* Ruby version
+* 質問詳細表示機能
 
-* System dependencies
+* 質問投稿機能
 
-* Configuration
+* 回答投稿機能
 
-* Database creation
+* ユーザーログイン機能
 
-* Database initialization
+* ユーザー情報編集機能
 
-* How to run the test suite
+* データ削除機能（ユーザー、質問、回答）
 
-* Services (job queues, cache servers, search engines, etc.)
+* DBテーブルのリレーション機能
 
-* Deployment instructions
+* ページネーション機能
 
-* ...
+* 単体テスト機能
+
+* 統合テスト機能
+
+
+使用技術
+ruby 2.6.3p62
+
+Rails 5.1.6
+
+sqlite3　1.3.13
+
+cloud9
+
+heroku
