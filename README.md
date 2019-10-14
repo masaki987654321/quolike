@@ -1,7 +1,10 @@
 # README
 質問を投稿・投稿された質問に回答をするアプリケーションです。
+
 https://protected-hollows-01325.herokuapp.com/
+
 サンプルユーザー
+
 メールアドレス: example@example.com
 パスワード: foobar
 
@@ -33,8 +36,8 @@ https://protected-hollows-01325.herokuapp.com/
 
 * 統合テスト機能
 
-
 使用技術
+
 ruby 2.6.3p62
 
 Rails 5.1.6
