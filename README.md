@@ -1,5 +1,9 @@
 # README
 質問を投稿・投稿された質問に回答をするアプリケーションです。
+https://protected-hollows-01325.herokuapp.com/
+サンプルユーザー
+メールアドレス: example@example.com
+パスワード: foobar
 
 機能一覧
 
