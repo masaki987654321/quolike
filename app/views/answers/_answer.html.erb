@@ -1,0 +1,12 @@
+<div class="answer">
+  <li>
+    <p style="word-wrap:break-word;">
+      <%= answer.content %></p>
+    <% if logged_in? %>
+      <% if current_user.id == answer.user_id %>
+          <%= link_to "削除する", answer_path(answer), method: :delete,
+                                           data: { confirm: "本当に削除しますか？" } %>
+      <% end %>
+    <% end %>
+  </li>
+</div>

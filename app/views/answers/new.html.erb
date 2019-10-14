@@ -1,0 +1,13 @@
+<h4>質問内容</h4>
+<p><%= @question.content %></p>
+
+<%= form_for(@answer) do |f| %>
+  <%= render 'shared/error_messages' , object: f.object %>
+  <div class="form-group">
+    <%= f.hidden_field :user_id, :value => @user.id %>
+    <%= f.hidden_field :question_id, :value => @question.id %>
+    <%= f.label  :回答内容 %>
+    <%= f.text_area :content, class: "form-control" %>
+    <%= f.submit "回答する", class: "btn btn-primary" %>
+  </div>
+<% end %>

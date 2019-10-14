@@ -15,6 +15,14 @@
  */
 @import "bootstrap";
 
+body {
+    margin: 0px;
+    padding: 0px;
+    font-family: sans-serif;
+    text-align: left;
+    width: 100%;
+}
+
 @mixin box_sizing {
   -moz-box-sizing:    border-box;
   -webkit-box-sizing: border-box;
@@ -29,4 +37,37 @@
   width: 100%;
   margin-top: 45px;
   @include box_sizing;
+}
+
+.question {
+  // questions/_question
+  li {
+    border: 1px solid #000000;
+    padding:3px 5px;
+    margin:1px;
+    background-color: #FFFFFF;
+    list-style:none;
+    p {
+      word-wrap:break-word;
+    }
+  }
+
+  // questions/show
+  p {
+    padding:3px 5px;
+    margin:1px;
+    background-color: #FFFFFF;
+    list-style:none;
+    word-wrap:break-word;
+  }
+}
+
+.answer {
+  li {
+    border: 1px solid #000000;
+    padding:3px 5px;
+    margin:1px;
+    background-color: #FFFFFF;
+    list-style:none;
+  }
 }

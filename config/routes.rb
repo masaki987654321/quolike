@@ -1,7 +1,4 @@
 Rails.application.routes.draw do
-    
-  get 'sessions/new'
-
   root 'home_pages#home'
   get '/signup' => 'users#new'
   post '/signup' => 'users#create'
@@ -10,4 +7,5 @@ Rails.application.routes.draw do
   delete '/logout' => 'sessions#destroy'
   resources :users
   resources :questions, only: [:new, :show, :create, :destroy] 
+  resources :answers, only: [:new, :create, :destroy]
 end

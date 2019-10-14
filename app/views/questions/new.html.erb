@@ -1,9 +1,11 @@
-<h1>質問の投稿</h1>
+<h4>質問の投稿</h4>
 
 <%= form_for(@question) do |f| %>
   <%= render 'shared/error_messages' , object: f.object %>
-  <%= f.label  :質問内容 %>
-  <%= f.text_area :content %>
-  <%= f.submit "質問する", class: "btn btn-primary" %>
+  <div class="form-group">
+    <%= f.label  :質問内容 %>
+    <%= f.text_area :content, class: "form-control" %>
+    <%= f.submit "質問する", class: "btn btn-primary" %>
+  </div>
 <% end %>
 

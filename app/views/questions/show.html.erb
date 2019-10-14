@@ -1,1 +1,17 @@
-<p><%= @question.content %></p>
+<div class="row">
+  <div class="col-md-12">
+    <h4>質問内容</h4>
+    <div class="question">
+      <p><%= @question.content %></p>
+    </div>
+    <% if @question.answers.any? %>
+      <p>回答数 (<%= @question.answers.count %>)</p>
+      <ol>
+        <%= render @answers %>
+      </ol>
+      <%= will_paginate @answers %>
+    <% end %>
+  </div>
+</div>
+
+<%= link_to "回答する", new_answer_path(question_id: @question.id) %>

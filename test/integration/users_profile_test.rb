@@ -14,6 +14,11 @@ class UsersProfileTest < ActionDispatch::IntegrationTest
     @user.questions.paginate(page: 1).each do |question|
       assert_match question.content, response.body
     end
+    assert_match @user.answers.count.to_s, response.body
+    assert_select 'div.pagination'
+    @user.answers.paginate(page: 1).each do |answer|
+      assert_match answer.content, response.body
+    end
   end
   
   

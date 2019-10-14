@@ -1,10 +1,16 @@
-<li>
-  <%= link_to "#{question.content}", question_path(question) %>
-  <% if logged_in? %>
-    <br>
-    <% if current_user.id = question.user_id %>
-        <%= link_to "削除する", question_path(question), method: :delete,
-                                         data: { confirm: "本当に削除しますか？" } %>
+<div class="question">
+  <li>
+    <p>
+      <%= question.content %>
+    </p>
+    <%= link_to "詳しく見る", question_path(question) %>
+    
+    <% if logged_in? %>
+      <% if current_user.id == question.user_id %>
+      /
+          <%= link_to "削除する", question_path(question), method: :delete,
+                                           data: { confirm: "本当に削除しますか？" } %>
+      <% end %>
     <% end %>
-  <% end %>
-</li>
+  </li>
+</div>
