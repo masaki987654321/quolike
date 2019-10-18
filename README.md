@@ -1,24 +1,49 @@
 # README
+質問を投稿・投稿された質問に回答をするアプリケーションです。
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+https://protected-hollows-01325.herokuapp.com/
 
-Things you may want to cover:
+サンプルユーザー
 
-* Ruby version
+メールアドレス: example@example.com
+パスワード: foobar
 
-* System dependencies
+機能一覧
 
-* Configuration
+* 質問一覧表示機能
 
-* Database creation
+* 質問詳細表示機能
 
-* Database initialization
+* 質問投稿機能
 
-* How to run the test suite
+* 回答投稿機能
 
-* Services (job queues, cache servers, search engines, etc.)
+* ユーザーログイン機能
 
-* Deployment instructions
+* 一時セッション機能
 
-* ...
+* 永続セッション機能
+
+* ユーザー情報編集機能
+
+* データ削除機能（ユーザー、質問、回答）
+
+* DBテーブルのリレーション機能
+
+* ページネーション機能
+
+* 単体テスト機能
+
+* 統合テスト機能
+
+使用技術
+
+ruby 2.6.3p62
+
+Rails 5.1.6
+
+sqlite3　1.3.13
+
+cloud9
+
+heroku
