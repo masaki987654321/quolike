@@ -1,6 +1,5 @@
 <h4><%= @user.name %>さんのマイページ</h4>
-
-
+<hr>
 <% if logged_in? && @user.id == current_user.id %>
     <p><%= link_to "ユーザー情報の編集", edit_user_path(current_user) %></p>
     <p><%= link_to "アカウントの削除", user_path(current_user), method: :delete, data: { confirm: "本当に削除しますか？" } %></p>
@@ -9,6 +8,7 @@
 <div class="row">
   <div class="col-md-10">
     <% if @questions.any? %>
+      <hr>
       <p><%= @user.name %>さんの質問数 (<%= @questions.count %>)</p>
       <%= will_paginate @questions, :previous_label => ' &lt 前へ', :next_label => '次へ &gt' %>
       <ol>
@@ -22,6 +22,7 @@
 <div class="row">
   <div class="col-md-10">
     <% if @answers.any? %>
+      <hr>
       <p><%= @user.name %>さんの回答数 (<%= @answers.count %>)</p>
       <%= will_paginate @answers, :previous_label => ' &lt 前へ', :next_label => '次へ &gt' %>
       <ol>

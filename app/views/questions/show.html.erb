@@ -4,9 +4,11 @@
     <h4>質問内容</h4>
     <div class="question">
       <p class="content"><%= @question.content %></p>
-      <p><%= link_to "回答する", new_answer_path(question_id: @question.id) %></p>
+      
+      <p><%= link_to "回答する", new_answer_path(question_id: @question.id), class: 'btn btn-primary' %></p>
    </div>
     <% if @question.answers.any? %>
+      <hr>
       <p>回答数 (<%= @question.answers.count %>)</p>
       <ol>
         <%= render partial: "answers/answer", collection: @answers %>
