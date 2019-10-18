@@ -1,30 +1,33 @@
 <h4><%= @user.name %>さんのマイページ</h4>
 
-<% if @user.id == current_user.id %>
-  <p><%= link_to "ユーザー情報の編集", edit_user_path(current_user) %></p>
-  <p><%= link_to "アカウントの削除", user_path(current_user), method: :delete, data: { confirm: "本当に削除しますか？" } %></p>
+
+<% if logged_in? && @user.id == current_user.id %>
+    <p><%= link_to "ユーザー情報の編集", edit_user_path(current_user) %></p>
+    <p><%= link_to "アカウントの削除", user_path(current_user), method: :delete, data: { confirm: "本当に削除しますか？" } %></p>
 <% end %>
 
 <div class="row">
-  <div class="col-md-12">
-    <% if @user.questions.any? %>
-      <p><%= @user.name %>さんの質問数 (<%= @user.questions.count %>)</p>
+  <div class="col-md-10">
+    <% if @questions.any? %>
+      <p><%= @user.name %>さんの質問数 (<%= @questions.count %>)</p>
+      <%= will_paginate @questions, :previous_label => ' &lt 前へ', :next_label => '次へ &gt' %>
       <ol>
-        <%= render @questions %>
+        <%= render partial: "questions/question", collection: @questions %> 
       </ol>
-      <%= will_paginate @questions %>
+      <%= will_paginate @questions, :previous_label => ' &lt 前へ', :next_label => '次へ &gt' %>
     <% end %>
   </div>
 </div>
 
 <div class="row">
-  <div class="col-md-12">
-    <% if @user.answers.any? %>
-      <p><%= @user.name %>さんの回答数 (<%= @user.answers.count %>)</p>
+  <div class="col-md-10">
+    <% if @answers.any? %>
+      <p><%= @user.name %>さんの回答数 (<%= @answers.count %>)</p>
+      <%= will_paginate @answers, :previous_label => ' &lt 前へ', :next_label => '次へ &gt' %>
       <ol>
-        <%= render @answers %>
+        <%= render partial: "answers/answer", collection: @answers %>
       </ol>
-      <%= will_paginate @answers %>
+       <%= will_paginate @answers, :previous_label => ' &lt 前へ', :next_label => '次へ &gt' %>
     <% end %>
   </div>
 </div>

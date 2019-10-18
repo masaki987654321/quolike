@@ -1,10 +1,11 @@
 <div class="row">
-  <div class="col-md-12">
-    <% if Question.any? %>
+  <div class="col-md-10">
+    <% if @questions.any? %>
+      <%= will_paginate @questions, :previous_label => ' &lt 前へ', :next_label => '次へ &gt' %>
       <ol>
-        <%= render @questions %>
+        <%= render partial: "questions/question", collection: @questions %>
       </ol>
-      <%= will_paginate @questions %>
+      <%= will_paginate @questions, :previous_label => ' &lt 前へ', :next_label => '次へ &gt' %>
     <% end %>
   </div>
 </div>

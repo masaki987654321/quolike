@@ -1,10 +1,15 @@
 <div class="answer">
   <li>
-    <p style="word-wrap:break-word;">
-      <%= answer.content %></p>
+    <p>投稿者：<%= link_to answer.name, user_path(answer.user_id) %></p>
+    <p class="content"><%= answer.content %></p>
+    <p>
+      <% if controller.controller_name == 'users' && controller.action_name == 'show' %>
+        <%= link_to "質問を見る", question_path(answer.question_id) %>
+      <% end %>
+    </p>
     <% if logged_in? %>
       <% if current_user.id == answer.user_id %>
-          <%= link_to "削除する", answer_path(answer), method: :delete,
+          <%= link_to "削除する", answer_path(answer.answer_id), method: :delete,
                                            data: { confirm: "本当に削除しますか？" } %>
       <% end %>
     <% end %>

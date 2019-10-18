@@ -4,7 +4,7 @@ User.create!(name:  "Example User",
              password_confirmation: "foobar",
              admin: true)
              
-5.times do |n|
+50.times do |n|
   name = "number-#{n+1}"
   email = "example-#{n+1}@example.com"
   password = "password"
@@ -14,19 +14,20 @@ User.create!(name:  "Example User",
                password_confirmation: password)
 end
                
-5.times do |n|
+50.times do |n|
     user_id = n+1
-    content = "questions-#{n+1}"
+    content = "questions-#{n+1}" 
     Question.create!(user_id: user_id,
                      content: content)
 end
 
-
-5.times do |n|
+10.times do
+  20.times do |n|
     user_id = n+1
     question_id = n+1
-    content = "sentence-#{n+1}"
+    content = "sentence-#{n+1}" 
     Answer.create!(user_id: user_id,
                  question_id: question_id,
                  content: content)
+  end
 end

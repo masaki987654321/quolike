@@ -8,7 +8,10 @@ class QuestionsController < ApplicationController
   
   def show
     @question = Question.find(params[:id])
-    @answers = @question.answers.paginate(page: params[:page])
+    @user = User.find(@question.user_id)
+    @answers = User.joins(:answers)
+                     .select("users.id AS user_id, answers.id AS answer_id, answers.*, users.*")
+                     .where("question_id = #{@question.id}").paginate(page: params[:page],  per_page: 10)
   end
   
   def create
