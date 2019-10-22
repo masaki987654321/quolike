@@ -18,6 +18,8 @@ https://protected-hollows-01325.herokuapp.com/
 
 * 回答投稿機能
 
+* タグによる質問絞り込み機能
+
 * ユーザーログイン機能
 
 * 一時セッション機能

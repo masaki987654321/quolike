@@ -16,6 +16,8 @@ class QuestionsController < ApplicationController
   
   def create
     @question = current_user.questions.build(question_params)
+    logger.info(@question.content)
+    logger.info(@question.tag_list)
     if @question.save
       flash[:success] = "質問が投稿されました"
       redirect_to root_url
@@ -34,7 +36,7 @@ class QuestionsController < ApplicationController
   private
 
     def question_params
-      params.require(:question).permit(:content)
+      params.require(:question).permit(:content, :tag_list)
     end
 
     def correct_user

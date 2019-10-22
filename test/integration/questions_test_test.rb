@@ -12,9 +12,9 @@ class QuestionsTestTest < ActionDispatch::IntegrationTest
     log_in_as(@user)
     get new_question_path
     assert_template 'questions/new'
-     assert_difference 'Question.count', 1 do
-      post questions_path, params: { question: { content: "Lorem ipsum" } }
-    end
+      assert_difference 'Question.count', 1 do
+        post questions_path, params: { question: { content: "Lorem ipsum", tag_list: "ruby,php,java" } }
+      end
     follow_redirect!
     assert_template 'home_pages/home'
   end

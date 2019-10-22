@@ -1,8 +1,8 @@
 <h4><%= @user.name %>さんのマイページ</h4>
 <hr>
 <% if logged_in? && @user.id == current_user.id %>
-    <p><%= link_to "ユーザー情報の編集", edit_user_path(current_user) %></p>
-    <p><%= link_to "アカウントの削除", user_path(current_user), method: :delete, data: { confirm: "本当に削除しますか？" } %></p>
+  <%= link_to "ユーザー情報の編集", edit_user_path(current_user), class: 'btn btn-primary btn-sm' %>
+  <%= link_to "アカウントの削除", user_path(current_user), method: :delete, data: { confirm: "本当に削除しますか？" }, class: 'btn btn-danger btn-sm' %>
 <% end %>
 
 <div class="row">
@@ -10,9 +10,31 @@
     <% if @questions.any? %>
       <hr>
       <p><%= @user.name %>さんの質問数 (<%= @questions.count %>)</p>
+ <!--質問ページネーション      -->
       <%= will_paginate @questions, :previous_label => ' &lt 前へ', :next_label => '次へ &gt' %>
       <ol>
-        <%= render partial: "questions/question", collection: @questions %> 
+<!--質問一つごとの処理-->
+        <% @questions.each do |question| %>
+          <div class="question">
+            <li>
+              <p class="content"><%= question.content %></p>
+              <p>
+                <% question.tag_list.each do |tag| %>
+                  <button type="button" class="btn btn-primary btn-sm"><%= tag %></button>
+                <% end%>
+              </p>
+              <p>回答数：<%= question.answers.count %></p>
+              <%= link_to "詳しく見る", question_path(question), class: 'btn btn-info btn-sm' %>
+              
+              <% if logged_in? %>
+                <% if current_user.id == question.user_id %>
+                  <%= link_to "削除する", question_path(question), method: :delete, data: { confirm: "本当に削除しますか？" }, class: 'btn btn-danger btn-sm' %>
+                <% end %>
+              <% end %>
+            </li>
+          </div>
+        <% end %> 
+        <!--ループ終了-->
       </ol>
       <%= will_paginate @questions, :previous_label => ' &lt 前へ', :next_label => '次へ &gt' %>
     <% end %>

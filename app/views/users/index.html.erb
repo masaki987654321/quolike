@@ -5,10 +5,9 @@
 <ul>
   <% @users.each do |user| %>
     <li>
-      <%= link_to user.name, user_path(user) %>
+      <%= link_to user.name, user_path(user), class: 'btn btn-secondary btn-sm' %>
       <% if current_user.admin?  %>
-        | <%= link_to "削除", user, method: :delete,
-                                  data: { confirm: "You sure?" } %>
+        | <%= link_to "削除", user, method: :delete, data: { confirm: "本当に削除しますか？" }, class: 'btn btn-danger btn-sm' %>
       <% end %>
     </li>
   <% end %>

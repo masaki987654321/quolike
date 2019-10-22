@@ -3,7 +3,8 @@ require 'test_helper'
 class QuestionTest < ActiveSupport::TestCase
   def setup
     @user = users(:michael)
-    @question = Question.new(content: "Lorem ipsum", user_id: @user.id)
+    @question = Question.new(content: "Lorem ipsum", 
+                             user_id: @user.id, tag_list: "ruby,php,java")
   end
 
   test "有効性のテスト" do
@@ -18,6 +19,11 @@ class QuestionTest < ActiveSupport::TestCase
   test "contentが空のテスト" do
     @question.content = "   "
     assert_not @question.valid?
+  end
+  
+  test "tag_listが空のテスト" do
+    @question.tag_list = "   "
+    assert @question.valid?
   end
 
   test "contentが200文字以上のテスト" do

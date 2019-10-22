@@ -8,9 +8,7 @@ class UsersController < ApplicationController
   
   def show
     @user = User.find(params[:id])
-    @questions = User.joins(:questions)
-                     .select("users.id AS user_id, questions.id AS question_id, questions.*, users.*")
-                     .where("user_id = #{@user.id}").paginate(page: params[:page],  per_page: 10)    
+    @questions = Question.where(user_id: @user.id).paginate(page: params[:page],  per_page: 10)    
     @answers = User.joins(:answers)
                      .select("users.id AS user_id, answers.id AS answer_id, answers.*, users.*")
                      .where("user_id = #{@user.id}").paginate(page: params[:page],  per_page: 10)
