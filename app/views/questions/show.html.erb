@@ -1,6 +1,6 @@
 <div class="row">
   <div class="col-md-10">
-    <p><%= link_to @user.name, user_path(@user), class: 'btn btn-secondary btn-sm' %>さんの質問</p>
+    <p><%= link_to @user.name, user_path(@user), class: 'btn btn-link btn-sm' %>さんの質問</p>
     <p>
       <% @question.tag_list.each do |tag| %>
         <button type="button" class="btn btn-primary btn-sm"><%= tag %></button>
@@ -11,14 +11,56 @@
       <p class="content"><%= @question.content %></p>
       
       <p><%= link_to "回答する", new_answer_path(question_id: @question.id), class: 'btn btn-primary' %></p>
-   </div>
-    <% if @question.answers.any? %>
+    </div>
+    
+    <% if @best_answer != nil %>
+      <hr>
+      <h4>ベストアンサー</h4>
+      <ol>
+        <div class="answer">
+          <li>
+            <p>回答者<%= link_to @users.find(@best_answer.user_id).name, user_path(@best_answer.user_id), class: 'btn btn-link btn-sm' %></p>
+            <p class="content"><%= @best_answer.content %></p>
+            <p>
+              <% if logged_in? %>
+                <!--削除ボタン-->
+                <% if current_user.id == @best_answer.user_id %>
+                  <%= link_to "削除する", answer_path(@best_answer.id), method: :delete, data: { confirm: "本当に削除しますか？" }, class: 'btn btn-danger btn-sm' %>
+                <% end %>
+              <% end %>
+            </p>
+          </li>
+        </div>
+      </ol>
+    <% end %>
+      
+    <!--回答一覧-->
+    <% if @answers.any? %>
       <hr>
       <p>回答数 (<%= @question.answers.count %>)</p>
       <ol>
-        <%= render partial: "answers/answer", collection: @answers %>
+        <% @answers.each do |answer| %>
+          <div class="answer">
+            <li>
+              <p>回答者<%= link_to @users.find(answer.user_id).name, user_path(answer.user_id), class: 'btn btn-link btn-sm' %></p>
+              <p class="content"><%= answer.content %></p>
+              <p>
+                <% if logged_in? %>
+                  <!--削除ボタン-->
+                  <% if current_user.id == answer.user_id %>
+                    <%= link_to "削除する", answer_path(answer.id), method: :delete, data: { confirm: "本当に削除しますか？" }, class: 'btn btn-danger btn-sm' %>
+                  <% end %>
+                  <!--ベストアンサーボタン-->
+                  <% if current_user.id == @question.user_id && @best_answer == nil %>
+                    <%= link_to "ベストアンサー", question_path(@question, params: { question: { best_answer_id: answer.id } }), method: :patch, class: 'btn btn-light btn-sm' %>
+                  <% end %>
+                <% end %>
+              </p>
+            </li>
+          </div>
+        <!--ループ終了-->
+        <% end %>
       </ol>
-      <%= will_paginate @answers %>
     <% end %>
   </div>
 </div>

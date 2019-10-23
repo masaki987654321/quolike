@@ -1,12 +1,11 @@
 <div class="row">
   <div class="col-md-10">
     <% if @questions.any? %>
-      <%= will_paginate @questions, :previous_label => ' &lt 前へ', :next_label => '次へ &gt' %>
       <ol>
         <% @questions.each do |question| %>
           <div class="question">
             <li>
-              <p>投稿者：<%= link_to @users.find(question.user_id).name, user_path(question.user_id), class: 'btn btn-secondary btn-sm' %></p>
+              <p>投稿者<%= link_to @users.find(question.user_id).name, user_path(question.user_id), class: 'btn btn-link btn-sm' %></p>
               <p class="content"><%= question.content %></p>
               <p>
                 <% question.tag_list.each do |tag| %>
@@ -28,5 +27,6 @@
       </ol>
       <%= will_paginate @questions, :previous_label => ' &lt 前へ', :next_label => '次へ &gt' %>
     <% end %>
+    <!--if questions.any?-->
   </div>
 </div>

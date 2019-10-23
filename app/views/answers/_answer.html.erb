@@ -1,6 +1,6 @@
 <div class="answer">
   <li>
-    <p>回答者：<%= link_to answer.name, user_path(answer.user_id), class: 'btn btn-secondary btn-sm' %></p>
+    <p>回答者<%= link_to answer.name, user_path(answer.user_id), class: 'btn btn-link btn-sm' %></p>
     <p class="content"><%= answer.content %></p>
     <p>
       <% if controller.controller_name == 'users' && controller.action_name == 'show' %>

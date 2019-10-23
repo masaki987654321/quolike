@@ -14,9 +14,9 @@ User.create!(name:  "Example User",
                password_confirmation: password)
 end
                
-50.times do |n|
+25.times do |n|
     user_id = n+1
-    content = "questions-#{n+1}" 
+    content = "qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq#{n+1}" 
     Question.create!(user_id: user_id,
                      content: content)
 end
@@ -25,7 +25,7 @@ end
   20.times do |n|
     user_id = n+1
     question_id = n+1
-    content = "sentence-#{n+1}" 
+    content = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa-#{n+1}" 
     Answer.create!(user_id: user_id,
                  question_id: question_id,
                  content: content)
