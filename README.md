@@ -35,12 +35,10 @@
 
 ## 使用技術
 
-ruby 2.6.3p62
+ruby on rails
 
-Rails 5.1.6
+docker
 
-sqlite3　1.3.13
+mysql
 
-cloud9
-
-heroku
+nginx
