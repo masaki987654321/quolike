@@ -1,3 +1,22 @@
 // Place all the styles related to the Questions controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+.questions {
+    margin-left: auto;
+    margin-right: auto;
+    width: 800px;
+}
+.question {
+    border: solid thin gainsboro;
+    margin:10px 0px;
+    background-color: #FFFFFF;
+    border-radius: 10px;
+    p {
+      padding:5px;
+      word-wrap:break-word;
+    }
+    .content {
+      font-size: 150%;
+    }
+}
+

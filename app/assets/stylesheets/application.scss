@@ -22,6 +22,7 @@ body {
     font-size: 15px;
     text-align: left;
     width: 100%;
+    background-color: whitesmoke;
 }
 
 @mixin box_sizing {
@@ -40,28 +41,7 @@ body {
   @include box_sizing;
 }
 
-.question {
-  // questions/_question
-  li {
-    border: 1px solid #000000;
-    padding:3px 5px;
-    margin:1px;
-    background-color: #FFFFFF;
-    list-style:none;
-    p {
-      word-wrap:break-word;
-    }
-  }
 
-  // questions/show
-  p {
-    padding:3px 5px;
-    margin:1px;
-    background-color: #FFFFFF;
-    list-style:none;
-    word-wrap:break-word;
-  }
-}
 
 .answer {
   li {
@@ -74,6 +54,3 @@ body {
   }
 }
 
-.content {
-  font-size: 150%;
-}
