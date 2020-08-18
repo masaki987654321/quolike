@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
-  root 'home_pages#home'
+  root 'questions#solved_index'
+  get '/questions/unsolved_index' => 'questions#unsolved_index', as: 'unsolved_questions'
   get '/signup' => 'users#new'
   post '/signup' => 'users#create'
   get '/login' => 'sessions#new'
