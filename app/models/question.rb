@@ -10,7 +10,7 @@ class Question < ApplicationRecord
   def get_answer_count(answers)
     answer_counts = 0
     answers.each do |answer|
-      if(answer.id == self.best_answer_id)
+      if(answer.question_id == self.id)
         answer_counts += 1
       end
     end
@@ -26,5 +26,20 @@ class Question < ApplicationRecord
       end
     end
     return best_answer
+  end
+
+  # viewへ送るquestionのhashを作成する処理
+  # answer_count, best_answerの情報を追加するため
+  def create_send_question_hash(answer_counts, best_answer=nil)
+    send_question = {
+      id: self.id,
+      content: self.content,
+      user_id: self.user_id,
+      updated_at: self.updated_at,
+      user_name: self.name,
+      answer_counts: answer_counts,
+      best_answer: best_answer
+    }
+    return send_question
   end
 end

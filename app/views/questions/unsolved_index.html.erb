@@ -1,17 +1,18 @@
 <% if @send_questions.any? %>
-<div class="questions">
-  <% @send_questions.each do |question| %>
-    <div class="question" onclick="location.href='<%= question_path(question[:id]) %>'">
-      <div class="question-info">
-        <%= link_to question[:user_name], user_path(question[:user_id]) %>
-        <%= question[:updated_at].strftime("%Y-%m-%d") %>
-      </div>
-      <div class="question-content">
-        <%= question[:content] %>
-      </div>
-      <div class="answer-count">
-        回答が<%= question[:answer_counts] %>件あります
-      </div>      
-    </div>
-  <% end %>
+  <div class="questions">
+    <% @send_questions.each do |question| %>
+      <div class="question" onclick="location.href='<%= question_path(question[:id]) %>'">
+        <div class="question-info">
+          <%= link_to question[:user_name], user_path(question[:user_id]) %>
+          <%= question[:updated_at].strftime("%Y-%m-%d") %>
+        </div>
+        <div class="question-content">
+          <%= question[:content] %>
+        </div>
+        <div class="answer-count">
+          回答が<%= question[:answer_counts] %>件あります
+        </div> 
+      </div>    
+    <% end %>
+  </div>
 <% end %>

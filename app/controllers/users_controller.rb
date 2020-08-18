@@ -7,11 +7,52 @@ class UsersController < ApplicationController
   end
   
   def show
+    # todo pagenations
     @user = User.find(params[:id])
-    @questions = Question.where(user_id: @user.id).paginate(page: params[:page],  per_page: 10)    
-    @answers = User.joins(:answers)
-                     .select("users.id AS user_id, answers.id AS answer_id, answers.*, users.*")
-                     .where("user_id = #{@user.id}").paginate(page: params[:page],  per_page: 10)
+
+    # 解決済質問のhash作成の処理
+    solved_questions = Question.where(user_id: @user.id)
+                               .where.not(best_answer_id: nil)
+                               .joins(:user).select("questions.*, users.name")
+    solved_answers = Answer.where(questions: {user_id: @user.id})
+                             .where.not(questions: {best_answer_id: nil})                 
+                             .joins(:question)
+                             .select("answers.*")
+    @solved_questions = []
+    solved_questions.each do |question|
+      answer_counts = question.get_answer_count(solved_answers)
+      best_answer = question.get_best_answer(solved_answers)
+      @solved_questions.push(question.create_send_question_hash(answer_counts, best_answer))
+    end
+
+    # 未解決質問のhash作成の処理
+    unsolved_questions = Question.where(user_id: @user.id)
+                                .where(best_answer_id: nil)
+                                .joins(:user).select("questions.*, users.name")
+    unsolved_answers = Answer.where(questions: {user_id: @user.id})
+                                .where(questions: {best_answer_id: nil})
+                                .joins(:question)
+                                .select("answers.*")
+    @unsolved_questions = []
+    unsolved_questions.each do |question|
+      answer_counts = question.get_answer_count(unsolved_answers)  
+      @unsolved_questions.push(question.create_send_question_hash(answer_counts))
+    end
+
+    # 回答した質問のhash作成の処理
+    answerd_questions = Question.joins(:answers, :user)
+                                .where(answers: {user_id: @user.id})
+                                .select("questions.user_id AS question_user_id, 
+                                                          answers.user_id AS answer_user_id,
+                                                          answers.content AS answer_content,
+                                                          users.name AS name,
+                                                          questions.*")    
+    answers = Answer.select("answers.question_id")
+    @answerd_questions = []
+    answerd_questions.each do |question|
+      answer_counts = question.get_answer_count(answers)  
+      @answerd_questions.push(question.create_send_question_hash(answer_counts))
+    end      
   end
   
   def new
