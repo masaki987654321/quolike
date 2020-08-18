@@ -1,19 +1,20 @@
-<% if @questions.any? %>
+<% if @send_questions.any? %>
 <div class="questions">
-  <% @questions.each do |question| %>
-    <div class="question">
-      <p>
-        <%# todo viewでmodelにアクセスしている。コントコーラでjoinを行う %>
-        <%= link_to @users.find(question.user_id).name, user_path(question.user_id) %>
-        <%= question.created_at.strftime("%Y-%m-%d") %>
-      </p>
-      <p class="content"><%= question.content %></p>
-      <p>
-        回答数：<%= question.answers.count %>
-        <%# todo リンクをオブジェクトに追加 %>
-        <%= link_to "詳しく見る", question_path(question) %>  
-      </p>
+  <% @send_questions.each do |question| %>
+    <div class="question" onclick="location.href='<%= question_path(question[:id]) %>'">
+      <div class="question-info">
+        <%= link_to question[:user_name], user_path(question[:user_id]) %>
+        <%= question[:updated_at].strftime("%Y-%m-%d") %>
+      </div>
+      <div class="question-content">
+        <%= question[:content] %>
+      </div>
+      <div class="best-answer">
+        <%= question[:best_answer] %>
+      </div>
+      <div class="answer-count">
+        その他の回答が<%= question[:answer_counts] - 1 %>件あります
+      </div>      
     </div>
   <% end %>
-  <%= will_paginate @questions, :previous_label => ' &lt 前へ', :next_label => '次へ &gt' %>
 <% end %>

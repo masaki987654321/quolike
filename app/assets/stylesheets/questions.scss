@@ -7,16 +7,30 @@
     width: 800px;
 }
 .question {
+    cursor: pointer;
     border: solid thin gainsboro;
     margin:10px 0px;
+    padding:15px;
     background-color: #FFFFFF;
     border-radius: 10px;
-    p {
-      padding:5px;
-      word-wrap:break-word;
+
+    .question-info {
+      font-size: 80%;
+      word-wrap: break-word;
     }
-    .content {
-      font-size: 150%;
+    .question-content {
+      font-size: 120%;
+      font-weight: bold;
+      word-wrap: break-word;
+      padding:8px 0px 4px 0px;
+    }
+    .best-answer {
+      font-size: 100%;
+      word-wrap: break-word;
+      padding:4px 0px 8px 0px;
+    }
+    .answer-count {
+      font-size: 80%;
     }
 }
 
