@@ -1,4 +1,3 @@
-<h4>質問内容</h4>
 <p><%= @question.content %></p>
 
 <%= form_for(@answer) do |f| %>
@@ -8,6 +7,7 @@
     <%= f.hidden_field :question_id, :value => @question.id %>
     <%= f.label  :回答内容 %>
     <%= f.text_area :content, class: "form-control" %>
-    <%= f.submit "回答する", class: "btn btn-primary" %>
+    <br>
+    <%= f.submit "回答する", class: "btn btn-outline-primary" %>
   </div>
 <% end %>

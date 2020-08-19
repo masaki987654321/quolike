@@ -11,11 +11,6 @@ class AnswersController < ApplicationController
   def create
     @answer = Answer.new(user_id: params[:answer][:user_id], question_id: params[:answer][:question_id],
                          content: params[:answer][:content])
-    logger.debug("コントローラーでデバッグだよ")
-    logger.debug(@answer.user_id)
-    logger.debug(@answer.question_id)
-    logger.debug("content")
-    logger.debug(@answer.content)
     if @answer.save
       flash[:success] = "回答が投稿されました"
       redirect_to root_url

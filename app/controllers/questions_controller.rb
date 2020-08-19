@@ -32,22 +32,24 @@ class QuestionsController < ApplicationController
   end
   
   def show
-    @question = Question.find(params[:id])
-    @user = User.find(@question.user_id)
-    @users = User.all
-    if (@question.best_answer_id != nil)
-      @best_answer = Answer.find(@question.best_answer_id)
-      @answers = Answer.where(question_id: @question.id).where.not(id: @question.best_answer_id)
-    else
-      @best_answer = nil
-      @answers = Answer.where(question_id: @question.id)
+    @question = Question.joins(:user).select("questions.*, users.name").find(params[:id])
+    answers = Answer.joins(:question, :user).where(question_id: @question.id).select("answers.*, questions.best_answer_id, users.name")
+    @answers = []
+    @best_answer = nil
+    @answer_count = 0
+
+    answers.each do |answer|
+      if (answer.is_best_answer?)
+        @best_answer = answer
+      else
+        @answers.push(answer.create_answer_hash)
+      end
+      @answer_count += 1
     end
   end
   
   def create
     @question = current_user.questions.build(question_params)
-    logger.info(@question.content)
-    logger.info(@question.tag_list)
     if @question.save
       flash[:success] = "質問が投稿されました"
       redirect_to root_url

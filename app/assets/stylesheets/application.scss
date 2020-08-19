@@ -41,16 +41,3 @@ body {
   @include box_sizing;
 }
 
-
-
-.answer {
-  li {
-    border: 1px solid #000000;
-    padding:3px 5px;
-    margin:1px;
-    background-color: #FFFFFF;
-    list-style:none;
-    word-wrap:break-word;
-  }
-}
-
