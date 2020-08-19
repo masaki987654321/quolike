@@ -1,3 +1,96 @@
 // Place all the styles related to the Questions controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.questions {
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 800px;
+  width: 90%;
+}
+// questions/solved_index, questions/unsolved_index, root
+.question {
+    cursor: pointer;
+    border: solid thin gainsboro;
+    margin:10px 0px;
+    padding:15px;
+    background-color: #FFFFFF;
+    border-radius: 10px;
+
+    .question-info {
+      font-size: 80%;
+      word-wrap: break-word;
+    }
+    .question-content {
+      font-size: 120%;
+      font-weight: bold;
+      word-wrap: break-word;
+      padding:8px 0px 4px 0px;
+    }
+    .best-answer {
+      font-size: 100%;
+      word-wrap: break-word;
+      padding:4px 0px 8px 0px;
+    }
+    .answer-count {
+      font-size: 80%;
+    }
+}
+
+// questions/show/:id
+.question-show {
+    border: solid thin gainsboro;
+    margin-top:10px;
+    margin-bottom:40px;
+    padding:15px;
+    background-color: #FFFFFF;
+    border-radius: 10px;
+
+    .question-info {
+      font-size: 80%;
+      word-wrap: break-word;
+    }
+    .question-content {
+      font-size: 120%;
+      font-weight: bold;
+      word-wrap: break-word;
+      padding:8px 0px 4px 0px;
+    }
+}
+
+.best-answer-show {
+  border: solid thin red;
+  margin:10px 0px;
+  padding:15px;
+  background-color: #FFFFFF;
+  border-radius: 10px;
+
+  .answer-info {
+    font-size: 80%;
+    word-wrap: break-word;
+  }
+  .answer-content {
+    font-size: 100%;
+    word-wrap: break-word;
+    padding:8px 0px 4px 0px;
+  }
+}
+
+.answer-show {
+  border: solid thin gainsboro;
+  margin:10px 0px;
+  padding:15px;
+  background-color: #FFFFFF;
+  border-radius: 10px;
+
+  .answer-info {
+    font-size: 80%;
+    word-wrap: break-word;
+  }
+  .answer-content {
+    font-size: 100%;
+    word-wrap: break-word;
+    padding:8px 0px 4px 0px;
+  }
+}
+

@@ -2,27 +2,54 @@ class QuestionsController < ApplicationController
   before_action :logged_in_user, only: [:new, :create, :update, :destroy]
   before_action :correct_user,   only: :destroy
   
+  def solved_index
+    # todo pagenation機能の実装
+    solved_questions = Question.where.not(best_answer_id: nil).joins(:user).select("questions.*, users.name")
+    solved_answers = Answer.where.not(questions: {best_answer_id: nil}).joins(:question).select("answers.*")
+    
+    @send_questions = []
+    solved_questions.each do |question|
+      answer_counts = question.get_answer_count(solved_answers)
+      best_answer = question.get_best_answer(solved_answers)
+      @send_questions.push(question.create_send_question_hash(answer_counts, best_answer))
+    end
+  end
+
+  def unsolved_index
+    # todo pagenation機能の実装
+    unsolved_questions = Question.where(best_answer_id: nil).joins(:user).select("questions.*, users.name")
+    unsolved_answers = Answer.where(questions: {best_answer_id: nil}).joins(:question).select("answers.*")
+    
+    @send_questions = []
+    unsolved_questions.each do |question|
+      answer_counts = question.get_answer_count(unsolved_answers)
+      @send_questions.push(question.create_send_question_hash(answer_counts))
+    end
+  end
+
   def new
     @question = current_user.questions.build
   end
   
   def show
-    @question = Question.find(params[:id])
-    @user = User.find(@question.user_id)
-    @users = User.all
-    if (@question.best_answer_id != nil)
-      @best_answer = Answer.find(@question.best_answer_id)
-      @answers = Answer.where(question_id: @question.id).where.not(id: @question.best_answer_id)
-    else
-      @best_answer = nil
-      @answers = Answer.where(question_id: @question.id)
+    @question = Question.joins(:user).select("questions.*, users.name").find(params[:id])
+    answers = Answer.joins(:question, :user).where(question_id: @question.id).select("answers.*, questions.best_answer_id, users.name")
+    @answers = []
+    @best_answer = nil
+    @answer_count = 0
+
+    answers.each do |answer|
+      if (answer.is_best_answer?)
+        @best_answer = answer
+      else
+        @answers.push(answer.create_answer_hash)
+      end
+      @answer_count += 1
     end
   end
   
   def create
     @question = current_user.questions.build(question_params)
-    logger.info(@question.content)
-    logger.info(@question.tag_list)
     if @question.save
       flash[:success] = "質問が投稿されました"
       redirect_to root_url
