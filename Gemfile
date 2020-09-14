@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 gem 'rails',        '5.1.6'
-gem 'acts-as-taggable-on', '~> 6.0'
+
 #パスワードをハッシュ化するためのハッシュ関数
 gem 'bcrypt',         '3.1.12'
 # ページネーション
