@@ -20,7 +20,7 @@ class AnswersTestTest < ActionDispatch::IntegrationTest
                                              content: "Lorem ipsum" } }
     end
     follow_redirect!
-    assert_template 'home_pages/home'
+    assert_template 'questions/unsolved_index'
   end
   
   test "answer削除失敗" do

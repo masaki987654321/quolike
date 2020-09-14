@@ -16,7 +16,7 @@ class QuestionsTestTest < ActionDispatch::IntegrationTest
         post questions_path, params: { question: { content: "Lorem ipsum"} }
       end
     follow_redirect!
-    assert_template 'home_pages/home'
+    assert_template 'questions/unsolved_index'
   end
   
   test "questions削除失敗" do

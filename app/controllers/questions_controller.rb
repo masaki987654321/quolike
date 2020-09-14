@@ -52,7 +52,7 @@ class QuestionsController < ApplicationController
     @question = current_user.questions.build(question_params)
     if @question.save
       flash[:success] = "質問が投稿されました"
-      redirect_to root_url
+      redirect_to unsolved_questions_path
     else 
       render 'questions/new'
       

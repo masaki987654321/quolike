@@ -13,7 +13,7 @@ class AnswersController < ApplicationController
                          content: params[:answer][:content])
     if @answer.save
       flash[:success] = "回答が投稿されました"
-      redirect_to root_url
+      redirect_to unsolved_questions_path
     else
       redirect_to new_answer_path(question_id: @answer.question_id)
     end
