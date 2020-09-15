@@ -47,7 +47,7 @@
             <% end %>
             <!--ベストアンサーボタン-->
             <% if current_user.id == @question.user_id && @best_answer == nil %>
-              <%= link_to "ベストアンサー", question_path(@question, params: { question: { best_answer_id: answer[:id] } }, method: :patch) %>
+              <%= link_to "ベストアンサー", designate_best_answer_path(id: @question.id, best_answer_id: answer[:id]), method: :patch %>
             <% end %>
           <% end %>
         </div>

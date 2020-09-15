@@ -59,13 +59,15 @@ class QuestionsController < ApplicationController
     end
   end
   
-  def update
+  def designate_best_answer
     @question = Question.find(params[:id])
-    if @question.update_attributes(question_params)
+    @question.best_answer_id = params[:best_answer_id]
+    if @question.save
       flash[:success] = "ベストアンサーを登録しました"
       redirect_to question_url(@question)
     else
-      render 'questions/show'
+      logger.debug('エラーです' + @quesiton)
+      redirect_to question_rul(@question)
     end
   end
 
@@ -78,7 +80,7 @@ class QuestionsController < ApplicationController
   private
 
     def question_params
-      params.require(:question).permit(:content, :tag_list, :best_answer_id)
+      params.require(:question).permit(:content, :best_answer_id)
     end
 
     def correct_user

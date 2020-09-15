@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   get '/login' => 'sessions#new'
   post '/login' => 'sessions#create'
   delete '/logout' => 'sessions#destroy'
+  patch 'designate_best_answer' => 'questions#designate_best_answer', as: 'designate_best_answer'
   resources :users
   resources :questions, only: [:new, :show, :create, :update, :destroy] 
   resources :answers, only: [:new, :create, :destroy]

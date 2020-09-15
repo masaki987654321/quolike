@@ -2,11 +2,13 @@ orange:
   content: "I just ate an orange!"
   created_at: <%= 10.minutes.ago %>
   user: michael
+  best_answer_id: null
 
 tau_manifesto:
   content: "Check out the @tauday site by @mhartl: http://tauday.com"
   created_at: <%= 3.years.ago %>
   user: michael
+  best_answer_id: null
 
 cat_video:
   content: "Sad cats are sad: http://youtu.be/PKffm2uI4dk"
